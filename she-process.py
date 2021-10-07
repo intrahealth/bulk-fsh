@@ -54,7 +54,7 @@ def genfsh(lang, obs):
             centre = "Сайт вакцинации"
         x = fake.date_between(start_date='-80y', end_date='-15y')
         birthDate = str(x)
-        identifier = str(9999) + str(i)
+        identifier = lang + str(9999) + str(i)
         # this prints oddly bc of the mix of rtl-ltr langs?
         print(lang, suffix, name, birthDate, identifier)
         # put through jinja2
