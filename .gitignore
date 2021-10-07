@@ -9,4 +9,4 @@
 # fsh
 fsh-generated
 input/fsh/*
-!input/fsh/extra.fsh
+!input/fsh/extra/extra.fsh
