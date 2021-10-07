@@ -6,17 +6,12 @@ version: 0.1.0
 fhirVersion: 4.0.1
 FSHOnly: true
 copyrightYear: 2021+
+# temp canonical
 canonical: http://worldhealthorganization.github.io/ddcc
 
 dependencies:
   hl7.fhir.uv.ips: 1.0.0
   hl7.fhir.uv.sdc: current
   ihe.mhd.fhir: current
-  # fails
-  # Cached package date for who.cr.covid19#current (2021-02-11T17:10:29) matches last build date on build.fhir.org (2021-02-11T17:10:29)
-  # who.cr.covid19: current
-  # doesn't work
-  # who.cr.covid19:
-  #   id: who.cr.covid19
-  #   uri: http://worldhealthorganization.github.io/ddcc/ImplementationGuide/who.cr.covid19
-  #   version: 0.0.1
+  # must use local cache version, builds are not on https://build.fhir.org/ig/qas.json
+  fhir.who.ddcc-vs: dev

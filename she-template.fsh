@@ -1,13 +1,3 @@
-Alias: $ICD9CM = http://hl7.org/fhir/sid/icd-9-cm
-Alias: $ICD10 = http://hl7.org/fhir/sid/icd-10
-Alias: $ICD11 = http://id.who.int/icd11/mms
-Alias: $LOINC = http://loinc.org
-Alias: SCT = http://snomed.info/sct
-
-Alias: $DDCCQuestionnaireURL = http://worldhealthorganization.github.io/ddcc/DDCCVSCoreDataSetQuestionnaire
-Alias: $targetStructureMap = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap
-Alias: $QRMapURL = http://worldhealthorganization.github.io/ddcc/StructureMap/ddcc-map-qr-bundle
-
 Instance:     DDCC-Patient-{{suffix}}
 InstanceOf:   DDCCPatient
 Usage:        #example

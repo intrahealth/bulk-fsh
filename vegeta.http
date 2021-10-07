@@ -1,0 +1,3 @@
+POST http://localhost:4321/ddcc/submitHealthEvent
+Content-type: application/fhir+json
+@/Users/richard/src/github.com/openhie/ddcc-transactions-mediator/tests/Demo-Bundle-1.json
