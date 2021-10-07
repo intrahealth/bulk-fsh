@@ -8,3 +8,5 @@
 
 # fsh
 fsh-generated
+input/fsh/*
+!input/fsh/extra.fsh
