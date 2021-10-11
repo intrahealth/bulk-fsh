@@ -1,0 +1,16 @@
+Num FSH files: 1, Elapsed time: 0:08.33, CPU: 25%, Max RAM (KB): 184236
+Num FSH files: 10, Elapsed time: 0:08.98, CPU: 52%, Max RAM (KB): 200344
+Num FSH files: 50, Elapsed time: 0:17.09, CPU: 88%, Max RAM (KB): 248816
+Num FSH files: 100, Elapsed time: 0:32.92, CPU: 87%, Max RAM (KB): 364220
+Num FSH files: 250, Elapsed time: 1:17.96, CPU: 100%, Max RAM (KB): 316440
+Num FSH files: 500, Elapsed time: 3:04.59, CPU: 102%, Max RAM (KB): 668364
+Num FSH files: 1000, Elapsed time: 8:45.82, CPU: 103%, Max RAM (KB): 686640
+Num FSH files: 1500, Elapsed time: 20:51.90, CPU: 105%, Max RAM (KB): 2112520
+Num FSH files: 2000, Elapsed time: 36:20.11, CPU: 104%, Max RAM (KB): 2236724
+Num FSH files: 2500, Elapsed time: 55:26.88, CPU: 104%, Max RAM (KB): 2239712
+Num FSH files: 3000, Elapsed time: 1:18:59, CPU: 104%, Max RAM (KB): 2252436
+Num FSH files: 3500, Elapsed time: 1:48:34, CPU: 104%, Max RAM (KB): 2540536
+Num FSH files: 4000, Elapsed time: 2:50:56, CPU: 108%, Max RAM (KB): 5033824
+Num FSH files: 4500, Elapsed time: 3:39:49, CPU: 108%, Max RAM (KB): 5056304
+Num FSH files: 5000, Elapsed time: 4:13:36, CPU: 107%, Max RAM (KB): 5055832
+Num FSH files: 5500, Elapsed time: 5:00:32, CPU: 107%, Max RAM (KB): 5073768
