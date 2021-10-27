@@ -26,5 +26,4 @@ Num FSH files: 1500, Elapsed time: 26:22.21, CPU: 103%, Max RAM (KB): 717560
 Num FSH files: 2000, Elapsed time: 48:41.10, CPU: 103%, Max RAM (KB): 1103084
 Num FSH files: 2500, Elapsed time: 1:18:21, CPU: 103%, Max RAM (KB): 1123668
 Num FSH files: 3000, Elapsed time: 1:56:12, CPU: 103%, Max RAM (KB): 1286484
-Command terminated by signal 2
 Num FSH files: 3500, Elapsed time: 2:12:07, CPU: 103%, Max RAM (KB): 1470528
