@@ -1,3 +1,6 @@
+//add Preterm, CD4, HIV Status, Pregnancy, birth weight, HAART Therapy (measles)
+
+//remove major CD4 elements 
 Instance:     DDCC-Patient-{{suffix}}
 InstanceOf:   DDCCPatient
 Usage:        #example
