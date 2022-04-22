@@ -1,196 +1,190 @@
-//add Preterm, CD4, HIV Status, Pregnancy, birth weight, HAART Therapy (measles)
-
-//remove major CD4 elements 
-Instance:     DDCC-Patient-{{suffix}}
-InstanceOf:   DDCCPatient
+Instance:     IMMZ-Patient-{{suffix}}
+InstanceOf:   IPSPatient
 Usage:        #example
 // Title: ""
 // Description: ""
 * name[+].text = "{{name}}"
 * name[=].use = #official
 * birthDate = "{{birthDate}}"
+* gender = #{{gender}}
 
 
-Instance: DDCC-Organization-{{suffix}}
-InstanceOf: DDCCOrganization
+Instance: IMMZ-Organization-{{suffix}}
+InstanceOf: Organization
 Usage: #example
 // Title: ""
 // Description: ""
 * name = "{{orgname}}"
 
-Instance: DDCC-ImmunizationRecommendation-{{suffix}}
-InstanceOf: DDCCImmunizationRecommendation
+Instance: IMMZ-ImmunizationRecommendation-{{suffix}}
+InstanceOf: ImmunizationRecommendation
 Usage: #example
 // Title: ""
 // Description: ""
 * date = "2021-05-06"
-* patient = Reference(DDCC-Patient-{{suffix}})
-* recommendation.vaccineCode.coding[ddccVaccine] = $ICD11#XM0CX4
+* patient = Reference(IMMZ-Patient-{{suffix}})
+* recommendation.vaccineCode.coding[ddccVaccine] = {{codesystem}}#{{vaccineCode}}
 * recommendation.dateCriterion.value = "2021-05-20"
 * recommendation.dateCriterion.code = http://loinc.org#30980-7
 * recommendation.forecastStatus = http://terminology.hl7.org/CodeSystem/immunization-recommendation-status#due
-* recommendation.supportingImmunization = Reference(DDCC-Immunization-{{suffix}})
+* recommendation.supportingImmunization = Reference(IMMZ-Immunization-{{suffix}})
 
-Instance: DDCC-Immunization-{{suffix}}
-InstanceOf: DDCCImmunization
+Instance: IMMZ-Immunization-{{suffix}}
+InstanceOf: IPSImmunization
 Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* extension[vaccineBrand].valueCoding = DDCC_Example_Test_CodeSystem#TEST
-* extension[vaccineMarketAuthorization].valueCoding = DDCC_Example_Test_CodeSystem#TEST
-* extension[validFrom].valueDateTime = "2021-05-30"
-* extension[country].valueCode = urn:iso:std:iso:3166#SAU
-* vaccineCode.coding[ddccVaccine] = $ICD11#XM0CX4
-* expirationDate = "2021-06-30"
+* vaccineCode.coding = {{codesystem}}#{{vaccineCode}}
+* expirationDate = "2024-06-30"
 * lotNumber = "123"
-* patient = Reference(DDCC-Patient-{{suffix}})
+* patient = Reference(IMMZ-Patient-{{suffix}})
 * location.display = "{{centre}}"
-* occurrenceDateTime =  "2021-05-06"
-* performer.actor = Reference(DDCC-Organization-{{suffix}})
-* protocolApplied[protocolAppliedAuthority].authority = Reference(DDCC-Organization-{{suffix}})
+//Set different date times between 2021-04-07 to 2022-04-25
+* occurrenceDateTime =  "{{date}}"
+* performer.actor = Reference(IMMZ-Organization-{{suffix}})
+//check what protol applied requirements there are
+* protocolApplied[protocolAppliedAuthority].authority = Reference(IMMZ-Organization-{{suffix}})
 * protocolApplied[protocolAppliedAuthority].targetDisease = $ICD11#RA01
 * protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = 1
 * protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = 2
 
-
-Instance:     DDCC-Composition-Example-{{suffix}}
-InstanceOf:   DDCCComposition
+//Create for a handful of female patients
+Instance: pregnancy-status-{{suffix}}
+InstanceOf: IPSObservationPregObservation
 Usage: #example
-* identifier[+].system = "urn:EXAMPLE-who-:ddcc:composition:ids"
-* identifier[=].value = "999123456123456123456"
-* identifier[=].use = #official
 * status = #final
-* subject = Reference(DDCC-Patient-{{suffix}})
-* date = "2020-05-06"
-* author = Reference(DDCC-Organization-{{suffix}})
-* attester.party = Reference(DDCC-Organization-{{suffix}})
-* section[vaccination].code = $LOINC#11369-6
-* section[vaccination].focus = Reference(DDCC-Immunization-{{suffix}})
-* section[vaccination].entry[+] = Reference(DDCC-Immunization-{{suffix}})
-* section[vaccination].entry[+] = Reference(DDCC-ImmunizationRecommendation-{{suffix}})
+* code = http://loinc.org#82810-3 "Pregnancy status"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "2020-01-10"
+* valueCodeableConcept = http://loinc.org#LA15173-0 "Pregnant"
 
-
-
-Instance: Example-{{suffix}}
-InstanceOf: DDCCDocument
+//HIV status positive
+Instance: HIVAIDS-Yes-{{suffix}}
+InstanceOf: Observation
 Usage: #example
+* status = #final
+* code = SCT#278977008 "Human immunodeficiency virus status (observable entity)"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = SCT#10828004 "Positive (qualifier value)"
 
-* type = #document
-* timestamp = "2021-06-03T13:28:17-05:00"
-* identifier[+].system = "urn:EXAMPLE-who-:ddcc:bundle:ids"
-* identifier[=].value = "9990123012301230123"
+//Immunocompromised
+Instance: Immunocompromised-{{suffix}}
+InstanceOf: Condition
+Usage: #example
+* status = #final
+* clinicalStatus = #active
+* code = SCT#370388006 "Patient immunocompromised (finding)"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
 
-* link[+].relation = "publication"
-* link[=].url = "urn:HCID:1234567890"
+//preterm birth (HepB, pneumococal)
+Instance: preterm-{{suffix}}
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = SCT#302080006 "Finding of birth outcome (finding)"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = SCT#367494004 "Premature birth of newborn (finding)"
 
-* entry[ddccComposition].fullUrl = "http://www.example.org/fhir/Composition/DDCC-Composition-Example-{{suffix}}"
-* entry[ddccComposition].resource = DDCC-Composition-Example-{{suffix}}
+//birthweight (HepB)
+Instance: birthweight-{{suffix}}
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = SCT#276610007 "Birthweight"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueQuantity = 2000 'g' "gram"
 
-* entry[ddccPatient].fullUrl = "http://www.example.org/fhir/Patient/DDCC-Patient-{{suffix}}"
-* entry[ddccPatient].resource = DDCC-Patient-{{suffix}}
+//CD4 % >25% (BCG)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueQuantity = 25 '%' "percent"
 
-* entry[ddccOrganization].fullUrl = "http://www.example.org/fhir/Organization/DDCC-Organization-{{suffix}}"
-* entry[ddccOrganization].resource = DDCC-Organization-{{suffix}}
+//CD4 count >=200 (BCG)
+Instance: CD4 Count
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = SCT#116745007 "Cell positive for CD4 antigen (cell)"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueQuantity = 205 SCT#116745007 "Cell positive for CD4 antigen (cell)"
 
-* entry[ddccImmunization].fullUrl = "http://www.example.org/fhir/Immunization/DDCC-Immunization-{{suffix}}"
-* entry[ddccImmunization].resource = DDCC-Immunization-{{suffix}}
+//HAART (Measles)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = 
 
-* entry[ddccImmunizationRecommendation].fullUrl = "http://www.example.org/fhir/ImmunizationRecommendation/DDCC-ImmunizationRecommendation-{{suffix}}"
-* entry[ddccImmunizationRecommendation].resource = DDCC-ImmunizationRecommendation-{{suffix}}
+//Seronegative (Dengue)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = 
 
+//TST (BCG)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = 
 
-Instance:     DDCC-VS-QuestionnaireResponse-{{suffix}}
-InstanceOf:   DDCCQuestionnaireResponse
-Usage:        #example
+//IGRA (BCG)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = 
 
-* questionnaire = $DDCCQuestionnaireURL
-* status = #completed
+//inussuception (for Rotavirus)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "2018-12-15"
+* valueCodeableConcept = 
 
-* subject = Reference(DDCC-Patient-{{suffix}})
-* authored = "2021-04-01"
+//sickle cell disease (Pneumococal)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = 
 
-* item[+].linkId = "name"
-* item[=].answer.valueString = "{{name}}"
-
-* item[+].linkId = "birthDate"
-* item[=].answer.valueDate = "{{birthDate}}"
-
-* item[+].linkId = "identifier"
-* item[=].answer.valueString = "{{identifier}}"
-
-* item[+].linkId = "sex"
-* item[=].answer.valueCoding = http://hl7.org/fhir/administrative-gender#male
-
-* item[+].linkId = "vaccine"
-* item[=].answer.valueCoding = $ICD11#XM1NL1
-
-* item[+].linkId = "brand"
-* item[=].answer.valueCoding = DDCC_Example_Test_CodeSystem#TEST
-
-* item[+].linkId = "manufacturer"
-* item[=].answer.valueCoding = DDCC_Example_Test_CodeSystem#TEST
-
-* item[+].linkId = "ma_holder"
-* item[=].answer.valueCoding = DDCC_Example_Test_CodeSystem#TEST
-
-* item[+].linkId = "lot"
-* item[=].answer.valueString = "ER8732"
-
-* item[+].linkId = "date"
-* item[=].answer.valueDate = "2021-04-05"
-
-* item[+].linkId = "vaccine_valid"
-* item[=].answer.valueDate = "2021-04-19"
-
-* item[+].linkId = "dose"
-* item[=].answer.valueInteger = 1
-
-* item[+].linkId = "total_doses"
-* item[=].answer.valueInteger = 2
-
-* item[+].linkId = "country"
-* item[=].answer.valueCoding = urn:iso:std:iso:3166#SAU
-
-* item[+].linkId = "centre"
-* item[=].answer.valueString = "{{centre}}"
-
-* item[+].linkId = "hw"
-* item[=].answer.valueString = "lAH8TnzqAInqwkslHzOlSA"
-
-* item[+].linkId = "disease"
-* item[=].answer.valueCoding = $ICD11#RA01
-
-* item[+].linkId = "due_date"
-* item[=].answer.valueDate = "2021-04-28"
-
-* item[+].linkId = "pha"
-* item[=].answer.valueString = "dPD2PfwzBQyphcjeUiAdRP"
-
-* item[+].linkId = "hcid"
-* item[=].answer.valueString = "bMlJkAt0V92RYhhG3fNt5"
-
-* item[+].linkId = "valid_from"
-* item[=].answer.valueDate = "2021-04-05"
-
-* item[+].linkId = "valid_until"
-* item[=].answer.valueDate = "2022-04-05"
-
-
-Instance:     DDCC-VS-TX-SHE-Parameters-{{suffix}}
-InstanceOf:   DDCCGenerateHealthCertificateParameters
-Usage:        #inline
-
-* parameter[+].name = "response"
-* parameter[=].resource = DDCC-VS-QuestionnaireResponse-{{suffix}}
-
-
-Instance:     DDCC-TX-SHE-bundle-example-{{suffix}}
-InstanceOf:   DDCCSubmitHealthEventRequest
-Usage:        #example
-
-* type = #batch
-* entry[+].fullUrl = "http://www.example.org/fhir/Parameters/DDCC-VS-TX-SHE-Parameters-{{suffix}}"
-* entry[=].resource = DDCC-VS-TX-SHE-Parameters-{{suffix}}
-* entry[=].request.method = #POST
-* entry[=].request.url = "QuestionnaireResponse/$generateHealthCertificate"
+//VNA levels (rabies)
+Instance: 
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = 
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueCodeableConcept = 
