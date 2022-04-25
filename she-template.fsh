@@ -16,19 +16,6 @@ Usage: #example
 // Description: ""
 * name = "{{orgname}}"
 
-Instance: IMMZ-ImmunizationRecommendation-{{suffix}}
-InstanceOf: ImmunizationRecommendation
-Usage: #example
-// Title: ""
-// Description: ""
-* date = "2021-05-06"
-* patient = Reference(IMMZ-Patient-{{suffix}})
-* recommendation.vaccineCode.coding[ddccVaccine] = {{codesystem}}#{{vaccineCode}}
-* recommendation.dateCriterion.value = "2021-05-20"
-* recommendation.dateCriterion.code = http://loinc.org#30980-7
-* recommendation.forecastStatus = http://terminology.hl7.org/CodeSystem/immunization-recommendation-status#due
-* recommendation.supportingImmunization = Reference(IMMZ-Immunization-{{suffix}})
-
 Instance: IMMZ-Immunization-{{suffix}}
 InstanceOf: IPSImmunization
 Usage: #example
@@ -89,18 +76,28 @@ Usage: #example
 * effectiveDateTime = "{{date}}"
 * valueCodeableConcept = SCT#367494004 "Premature birth of newborn (finding)"
 
-//birthweight (HepB)
-Instance: birthweight-{{suffix}}
+//birthweight-low (HepB)
+Instance: birthweightlow-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
 * code = SCT#276610007 "Birthweight"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
-* valueQuantity = 2000 'g' "gram"
+* valueQuantity = 1877 'g' "gram"
+
+//birthweight-normal (HepB)
+Instance: birthweightnormal-{{suffix}}
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = SCT#276610007 "Birthweight"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueQuantity = 6855 'g' "gram"
 
 //CD4 % >25% (BCG)
-Instance: cdpercent-{{suffix}}
+Instance: cd4percent-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
@@ -108,10 +105,10 @@ Usage: #example
 * code = SCT#116745007 "Cell positive for CD4 antigen (cell)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
-* valueQuantity = 25 '%' "percent"
+* valueQuantity = 27 '%' "percent"
 
 //CD4 count >=200 (BCG)
-Instance: cd4count-{{suffix}}
+Instance: cd4countmore-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
@@ -120,6 +117,17 @@ Usage: #example
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
 * valueQuantity = 205 SCT#116745007 "Cell positive for CD4 antigen (cell)"
+
+//CD4 count <200 (BCG)
+Instance: cd4countless-{{suffix}}
+InstanceOf: Observation
+Usage: #example
+* status = #final
+//is SCT#413789001 "CD41 count (procedure)" a more accurate code for the procedure? HAART is a procedure 
+* code = SCT#116745007 "Cell positive for CD4 antigen (cell)"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueQuantity = 180 SCT#116745007 "Cell positive for CD4 antigen (cell)"
 
 //HAART (Measles)
 Instance: haart-{{suffix}}
@@ -153,8 +161,9 @@ Usage: #example
 * valueCodeableConcept = 
 
 //IGRA (BCG)
-//can't find code to indicate IGRA test
-Instance: 
+//can't find code to indicate IGRA test; suggest removing
+/*
+Instance: igra-bcg
 InstanceOf: Observation
 Usage: #example
 * status = #final
@@ -162,6 +171,7 @@ Usage: #example
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
 * valueCodeableConcept = 
+*/
 
 //intussuception (for Rotavirus)
 Instance: intussuception-{{suffix}}
@@ -182,7 +192,7 @@ Usage: #example
 * recordedDate = "{{date}}"
 
 //VNA levels below 0.5 (rabies)
-Instance: vnalevel-{{suffix}}
+Instance: vnalevelbelow-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
@@ -192,7 +202,7 @@ Usage: #example
 * valueQuantity = 0.4 'IU/mL' "international unit/milliliter"
 
 //VNA levels above 0.5 (rabies)
-Instance: vnalevel-{{suffix}}
+Instance: vnalevelabove-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
