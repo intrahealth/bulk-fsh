@@ -11,7 +11,4 @@ canonical: http://worldhealthorganization.github.io/ddcc
 
 dependencies:
   hl7.fhir.uv.ips: 1.0.0
-  hl7.fhir.uv.sdc: current
-  ihe.mhd.fhir: current
   # must use local cache version, builds are not on https://build.fhir.org/ig/qas.json
-  fhir.who.ddcc-vs: dev

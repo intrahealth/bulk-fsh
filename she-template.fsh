@@ -100,56 +100,60 @@ Usage: #example
 * valueQuantity = 2000 'g' "gram"
 
 //CD4 % >25% (BCG)
-Instance: 
+Instance: cdpercent-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
-* code = 
+//same code as CD4 count below?
+* code = SCT#116745007 "Cell positive for CD4 antigen (cell)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
 * valueQuantity = 25 '%' "percent"
 
 //CD4 count >=200 (BCG)
-Instance: CD4 Count
+Instance: cd4count-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
+//is SCT#413789001 "CD41 count (procedure)" a more accurate code for the procedure? HAART is a procedure 
 * code = SCT#116745007 "Cell positive for CD4 antigen (cell)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
 * valueQuantity = 205 SCT#116745007 "Cell positive for CD4 antigen (cell)"
 
 //HAART (Measles)
-Instance: 
-InstanceOf: Observation
+Instance: haart-{{suffix}}
+InstanceOf: MedicationStatement
 Usage: #example
 * status = #final
-* code = 
+* medicationCodeableConcept = SCT#416234007 "Highly active anti-retroviral therapy (procedure)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
-* valueCodeableConcept = 
 
 //Seronegative (Dengue)
-Instance: 
+Instance: seronegative-{{{suffix}}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
-* code = 
+* code = SCT#81321002 "Seronegative (qualifier value)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
+//how do we structure this one? 
 * valueCodeableConcept = 
 
 //TST (BCG)
-Instance: 
+Instance: tst-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
-* code = 
+* code = SCT#424294008 " Delayed hypersensitivity skin test for tuberculin purified protein derivative (procedure)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
+// Should we use this code? ICD11#741356478 "Abnormal reaction to tuberculin test"
 * valueCodeableConcept = 
 
 //IGRA (BCG)
+//can't find code to indicate IGRA test
 Instance: 
 InstanceOf: Observation
 Usage: #example
@@ -159,32 +163,40 @@ Usage: #example
 * effectiveDateTime = "{{date}}"
 * valueCodeableConcept = 
 
-//inussuception (for Rotavirus)
-Instance: 
-InstanceOf: Observation
+//intussuception (for Rotavirus)
+Instance: intussuception-{{suffix}}
+InstanceOf: Condition
 Usage: #example
-* status = #final
-* code = 
+* clinicalStatus = #active
+* code = SCT#41444002 "Invagination (morphologic abnormality)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
-* effectiveDateTime = "2018-12-15"
-* valueCodeableConcept = 
+* recordedDate = "{{date}}"
 
 //sickle cell disease (Pneumococal)
-Instance: 
-InstanceOf: Observation
+Instance: sicklecell-{{suffix}}
+InstanceOf: Condition
 Usage: #example
-* status = #final
-* code = 
+* clinicalStatus = #active
+* code = SCT#127040003 "Sickle cell-hemoglobin SS disease (disorder)"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
-* effectiveDateTime = "{{date}}"
-* valueCodeableConcept = 
+* recordedDate = "{{date}}"
 
-//VNA levels (rabies)
-Instance: 
+//VNA levels below 0.5 (rabies)
+Instance: vnalevel-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
-* code = 
+* code = LNC#6524-3 "Rabies virus neutralizing antibody [Units/volume] in Serum by Neutralization test"
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
-* valueCodeableConcept = 
+* valueQuantity = 0.4 'IU/mL' "international unit/milliliter"
+
+//VNA levels above 0.5 (rabies)
+Instance: vnalevel-{{suffix}}
+InstanceOf: Observation
+Usage: #example
+* status = #final
+* code = LNC#6524-3 "Rabies virus neutralizing antibody [Units/volume] in Serum by Neutralization test"
+* subject = Reference(Patient/IMMZ-Patient-{{suffix}})
+* effectiveDateTime = "{{date}}"
+* valueQuantity = 0.7 'IU/mL' "international unit/milliliter"
