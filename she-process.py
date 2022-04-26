@@ -23,8 +23,17 @@ names = df_names['en'].sample(n=1, random_state=1)
 # print(names.values)
 # print(names.values[0])
 generated_genders = ['male', 'female'] # will be randomly sampled to populate Patient.gender
+# build possible vaccines from data dictionary
 ws_vaccines = load_workbook('IMZ-DAK-Data-Dictionary.xlsx')['IMZ.A1 Vaccine Library']
-vaccine_count = ws_vaccines.max_row - 1
+vaccine_codes = dict() # { (vaccine name): list[snomed ct code] }
+for row in ws_vaccines.iter_rows(2): # skip header row
+    if row[15].value is None: # no SNOMEDCT code
+        continue
+    if row[2].value not in vaccine_codes:
+        vaccine_codes[row[2].value] = [row[15].value]
+    else:
+        vaccine_codes[row[2].value].append(row[15].value)
+unique_vaccine_names = len(vaccine_codes.keys())
 
 # In[3]:
 
@@ -63,24 +72,29 @@ def genfsh(lang, obs):
         identifier = lang + str(9999) + str(i)
         # choose a random administrative gender
         gender = random.choice(generated_genders);
-        # choose random vaccine
-        vaccine_code = None
-        while (vaccine_code is None):
-            vaccine_row = random.choice(range(vaccine_count))
-            vaccine_code = ws_vaccines.cell(vaccine_row, 16).value
-            vaccine_name = ws_vaccines.cell(vaccine_row, 3).value
+        # choose random immunizations
+        vaccines = random.sample(list(vaccine_codes.keys()), 3) # choose 3 random vaccines
+        patient_immunizations = []
+        for vaccine in vaccines:
+            patient_immunizations.append({
+                "vaccineName": vaccine.replace(" ", "-"),
+                "vaccineCodeName": random.choice(vaccine_codes[vaccine]), # for each vaccine, get random vaccination code
+                "targetDiseaseName": """Disease for {}""".format(vaccine).replace(" ", "-"), # TODO
+                "doseNumberPositiveInt": 2, # TODO
+                "seriesDosesPositiveInt": 3, # TODO
+            })
         ## assign random observations:
         # pregnancy
         pregnant = False
         if (gender == "female" and random.random() < 0.5):
             pregnant = True
         # HIV positive
-        HIV_positive = False
+        hiv_positive = False
         if (random.random() < 0.4):
-            HIV_positive = True
+            hiv_positive = True
         
         # this prints oddly bc of the mix of rtl-ltr langs?
-        print(lang, suffix, name, birthDate, identifier, gender, vaccine_name)
+        print(lang, suffix, name, birthDate, identifier, gender, ', '.join([elem["vaccineName"] for elem in patient_immunizations]))
         # put through jinja2
         path = pathlib.Path('she-template.fsh')
         text = path.read_text()
@@ -94,12 +108,9 @@ def genfsh(lang, obs):
             orgname=orgname,
             centre=centre,
             date=vaccine_date,
-            vaccineCodeName=vaccine_code,
-            targetDiseaseName="""Disease for {}""".format(vaccine_name).replace(" ", "_"),
-            doseNumberPositiveInt=2,
-            seriesDosesPositiveInt=3,
+            immunizations=patient_immunizations,
             pregnant=pregnant,
-            HIV_positive=HIV_positive,
+            hiv_positive=hiv_positive,
             gen_extra_data=False
         )
         path_out = pathlib.Path(f"input/fsh/{suffix}.fsh")

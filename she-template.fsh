@@ -16,13 +16,14 @@ Usage: #example
 // Description: ""
 * name = "{{orgname}}"
 
-Instance: IMMZ-Immunization-{{suffix}}
+{% for imm in immunizations %}
+Instance: IMMZ-Immunization-{{imm.vaccineName|truncate(32, True)}}-{{suffix}}
 InstanceOf: IPSImmunization
 Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode.coding = SCT#{{vaccineCodeName}}
+* vaccineCode.coding = SCT#{{imm.vaccineCodeName}}
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-{{suffix}})
@@ -32,9 +33,10 @@ Usage: #example
 * performer.actor = Reference(IMMZ-Organization-{{suffix}})
 //check what protol applied requirements there are
 * protocolApplied[protocolAppliedAuthority].authority = Reference(IMMZ-Organization-{{suffix}})
-* protocolApplied[protocolAppliedAuthority].targetDisease = SCT#{{targetDiseaseName}}
-* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = {{doseNumberPositiveInt}}
-* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = {{seriesDosesPositiveInt}}
+* protocolApplied[protocolAppliedAuthority].targetDisease = SCT#{{imm.targetDiseaseName}}
+* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = {{imm.doseNumberPositiveInt}}
+* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = {{imm.seriesDosesPositiveInt}}
+{% endfor %}
 
 {# Pregnancy status #}
 {% if pregnant %}
@@ -49,8 +51,7 @@ Usage: #example
 * valueCodeableConcept = http://loinc.org#LA15173-0 "Pregnant"
 {% endif %}
 
-{# HIV positive status #}
-{% if HIV_positive %}
+{% if hiv_positive %}
 //HIV status positive
 Instance: HIVAIDS-Yes-{{suffix}}
 InstanceOf: Observation
