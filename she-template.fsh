@@ -22,7 +22,7 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode.coding = {{codesystem}}#{{vaccineCode}}
+* vaccineCode.coding = SCT#{{vaccineCodeName}}
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-{{suffix}})
@@ -32,10 +32,12 @@ Usage: #example
 * performer.actor = Reference(IMMZ-Organization-{{suffix}})
 //check what protol applied requirements there are
 * protocolApplied[protocolAppliedAuthority].authority = Reference(IMMZ-Organization-{{suffix}})
-* protocolApplied[protocolAppliedAuthority].targetDisease = $ICD11#RA01
-* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = 1
-* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = 2
+* protocolApplied[protocolAppliedAuthority].targetDisease = SCT#{{targetDiseaseName}}
+* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = {{doseNumberPositiveInt}}
+* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = {{seriesDosesPositiveInt}}
 
+{# Pregnancy status #}
+{% if pregnant %}
 //Create for a handful of female patients
 Instance: pregnancy-status-{{suffix}}
 InstanceOf: IPSObservationPregObservation
@@ -45,7 +47,10 @@ Usage: #example
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "2020-01-10"
 * valueCodeableConcept = http://loinc.org#LA15173-0 "Pregnant"
+{% endif %}
 
+{# HIV positive status #}
+{% if HIV_positive %}
 //HIV status positive
 Instance: HIVAIDS-Yes-{{suffix}}
 InstanceOf: Observation
@@ -55,7 +60,9 @@ Usage: #example
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
 * valueCodeableConcept = SCT#10828004 "Positive (qualifier value)"
+{% endif %}
 
+{% if gen_extra_data %}
 //Immunocompromised
 Instance: Immunocompromised-{{suffix}}
 InstanceOf: Condition
@@ -139,7 +146,7 @@ Usage: #example
 * effectiveDateTime = "{{date}}"
 
 //Seronegative (Dengue)
-Instance: seronegative-{{{suffix}}}
+Instance: seronegative-{{suffix}}
 InstanceOf: Observation
 Usage: #example
 * status = #final
@@ -210,3 +217,4 @@ Usage: #example
 * subject = Reference(Patient/IMMZ-Patient-{{suffix}})
 * effectiveDateTime = "{{date}}"
 * valueQuantity = 0.7 'IU/mL' "international unit/milliliter"
+{% endif %}

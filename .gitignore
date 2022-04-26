@@ -10,3 +10,6 @@
 fsh-generated
 input/fsh/*
 !input/fsh/extra/extra.fsh
+
+# python venv
+env/
