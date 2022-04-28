@@ -22,7 +22,6 @@ df_names = pd.read_csv('out.csv')
 names = df_names['en'].sample(n=1, random_state=1)
 # print(names.values)
 # print(names.values[0])
-generated_genders = ['male', 'female'] # will be randomly sampled to populate Patient.gender
 # build possible vaccines from data dictionary
 ws_vaccines = load_workbook('IMZ-DAK-Data-Dictionary.xlsx')['IMZ.A1 Vaccine Library']
 vaccine_codes = dict() # { (vaccine name): list[snomed ct code] }
@@ -30,9 +29,9 @@ for row in ws_vaccines.iter_rows(2): # skip header row
     if row[15].value is None: # no SNOMEDCT code
         continue
     if row[2].value not in vaccine_codes:
-        vaccine_codes[row[2].value] = [row[15].value]
+        vaccine_codes[row[2].value] = [{ "code": row[15].value, "series_name": row[16].value }]
     else:
-        vaccine_codes[row[2].value].append(row[15].value)
+        vaccine_codes[row[2].value].append({ "code": row[15].value, "series_name": row[16].value })
 unique_vaccine_names = len(vaccine_codes.keys())
 
 # In[3]:
@@ -41,12 +40,52 @@ unique_vaccine_names = len(vaccine_codes.keys())
 # goal: nested lists of form: [index, suffix, birthDate, centre...]
 # for now, suffix = name and suffix
 fake = Faker()
-def genfsh(lang, obs):
-    for i in range(obs):
+def genfsh(lang):
+    # Fix patients to generate
+    generated_patients = [{
+        "type": "infant-m",
+        "birth_date": fake.date_between(start_date='-24m', end_date='-12m'),
+        "adm_gender": 'male',
+    }, {
+        "type": "infant-f",
+        "birth_date": fake.date_between(start_date='-24m', end_date='-12m'),
+        "adm_gender": 'female',
+    }, {
+        "type": "teen-m",
+        "birth_date": fake.date_between(start_date='-16y', end_date='-13y'),
+        "adm_gender": 'male',
+    }, {
+        "type": "teen-f",
+        "birth_date": fake.date_between(start_date='-16y', end_date='-13y'),
+        "adm_gender": 'female',
+    }, {
+        "type": "adult-m",
+        "birth_date": fake.date_between(start_date='-30y', end_date='-25y'),
+        "adm_gender": 'male',
+    }, {
+        "type": "adult-f",
+        "birth_date": fake.date_between(start_date='-30y', end_date='-25y'),
+        "adm_gender": 'female',
+    }]
+
+    # Fix a specific code per type of vaccine
+    generated_vaccines = []
+    for vaccine_name, codes in vaccine_codes.items():
+        random_code = random.choice(codes) # for each vaccine, get random vaccination code
+        generated_vaccines.append({
+            "vaccineName": vaccine_name.replace(" ", "-"), # replacing spaces so that we can insert this in a FHIR Resource's id
+            "vaccineCodeName": random_code["code"],
+            "vaccineSeriesName": random_code["series_name"],
+            "doseNumberPositiveInt": "TODO: DOSE", # TODO
+            "seriesDosesPositiveInt": "TODO: SERIES", # TODO
+        })
+
+    # Generate patients
+    for patient in generated_patients:
         tempname = df_names[lang].sample(n=1)
         tempname = tempname.values[0]
-        suffix = lang + str(i)
-        name = tempname + str(i)
+        suffix = lang + str(patient["type"])
+        name = tempname + str(patient["type"])
         if lang == 'en':
             orgname = "Government Hospital"
             centre = 'Vaccination Site'
@@ -65,36 +104,24 @@ def genfsh(lang, obs):
         if lang == 'ru':
             orgname = "Государственная больница"
             centre = "Сайт вакцинации"
-        x = fake.date_between(start_date='-80y', end_date='-15y')
-        birthDate = str(x)
-        x = fake.date_between_dates(date_start=date(2021, 4, 7), date_end=date(2022, 4, 25))
-        vaccine_date = str(x)
-        identifier = lang + str(9999) + str(i)
-        # choose a random administrative gender
-        gender = random.choice(generated_genders);
-        # choose random immunizations
-        vaccines = random.sample(list(vaccine_codes.keys()), 3) # choose 3 random vaccines
-        patient_immunizations = []
-        for vaccine in vaccines:
-            patient_immunizations.append({
-                "vaccineName": vaccine.replace(" ", "-"),
-                "vaccineCodeName": random.choice(vaccine_codes[vaccine]), # for each vaccine, get random vaccination code
-                "targetDiseaseName": """Disease for {}""".format(vaccine).replace(" ", "-"), # TODO
-                "doseNumberPositiveInt": 2, # TODO
-                "seriesDosesPositiveInt": 3, # TODO
-            })
-        ## assign random observations:
-        # pregnancy
-        pregnant = False
-        if (gender == "female" and random.random() < 0.5):
-            pregnant = True
-        # HIV positive
-        hiv_positive = False
-        if (random.random() < 0.4):
-            hiv_positive = True
+        birthDate = str(patient['birth_date'])
+        date_today = date.today()
+        vaccine_date = str(fake.date_between_dates(date_start=patient["birth_date"], date_end=date_today))
+        identifier = lang + str(9999) + str(patient["type"])
+        adm_gender = patient['adm_gender']
+
+        # # # assign random observations: 14 months, 15, 30 -> each vaccination once (random code)
+        # # pregnancy
+        # pregnant = False
+        # if (adm_gender == "female" and random.random() < 0.5):
+        #     pregnant = True
+        # # HIV positive
+        # hiv_positive = False
+        # if (random.random() < 0.4):
+        #     hiv_positive = True
         
         # this prints oddly bc of the mix of rtl-ltr langs?
-        print(lang, suffix, name, birthDate, identifier, gender, ', '.join([elem["vaccineName"] for elem in patient_immunizations]))
+        print(lang, suffix, name, birthDate, identifier, adm_gender)
         # put through jinja2
         path = pathlib.Path('she-template.fsh')
         text = path.read_text()
@@ -104,13 +131,14 @@ def genfsh(lang, obs):
             name=name,
             birthDate=birthDate,
             identifier=identifier,
-            gender=gender,
+            adm_gender=adm_gender,
             orgname=orgname,
             centre=centre,
             date=vaccine_date,
-            immunizations=patient_immunizations,
-            pregnant=pregnant,
-            hiv_positive=hiv_positive,
+            date_today=date_today,
+            immunizations=generated_vaccines,
+            pregnant=False,
+            hiv_positive=False,
             gen_extra_data=False
         )
         path_out = pathlib.Path(f"input/fsh/{suffix}.fsh")
@@ -122,10 +150,10 @@ def genfsh(lang, obs):
 
 print("command:", str(sys.argv))
 langs = ['en', 'es', 'fr', 'ar', 'zh', 'ru']
-if sys.argv[1] in langs:
-    genfsh(str(sys.argv[1]), int(sys.argv[2]))
+if len(sys.argv) > 1 and sys.argv[1] in langs:
+    genfsh(str(sys.argv[1]))
 else:
-    genfsh('ar', 100)
+    genfsh('ar')
 
 
 # In[ ]:

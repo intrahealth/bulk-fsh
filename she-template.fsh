@@ -6,7 +6,7 @@ Usage:        #example
 * name[+].text = "{{name}}"
 * name[=].use = #official
 * birthDate = "{{birthDate}}"
-* gender = #{{gender}}
+* gender = #{{adm_gender}}
 
 
 Instance: IMMZ-Organization-{{suffix}}
@@ -28,14 +28,15 @@ Usage: #example
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-{{suffix}})
 * location.display = "{{centre}}"
-//Set different date times between 2021-04-07 to 2022-04-25
+//Set to a random date between {{birthDate}} (Patient birth date) to {{date_today}} (date of test-case generation)
 * occurrenceDateTime =  "{{date}}"
 * performer.actor = Reference(IMMZ-Organization-{{suffix}})
 //check what protol applied requirements there are
 * protocolApplied[protocolAppliedAuthority].authority = Reference(IMMZ-Organization-{{suffix}})
-* protocolApplied[protocolAppliedAuthority].targetDisease = SCT#{{imm.targetDiseaseName}}
-* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = {{imm.doseNumberPositiveInt}}
-* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = {{imm.seriesDosesPositiveInt}}
+//Vaccine name: {{imm.vaccineName}}
+//Series name: {{imm.vaccineSeriesName}}
+* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = "{{imm.doseNumberPositiveInt}}"
+* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = "{{imm.seriesDosesPositiveInt}}"
 {% endfor %}
 
 {# Pregnancy status #}
