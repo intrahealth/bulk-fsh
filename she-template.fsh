@@ -23,7 +23,7 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode.coding = SCT#{{imm.vaccineCodeName}}
+* vaccineCode = SCT#{{imm.vaccineCodeName}}
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-{{suffix}})
@@ -32,11 +32,11 @@ Usage: #example
 * occurrenceDateTime =  "{{date}}"
 * performer.actor = Reference(IMMZ-Organization-{{suffix}})
 //check what protol applied requirements there are
-* protocolApplied[protocolAppliedAuthority].authority = Reference(IMMZ-Organization-{{suffix}})
+* protocolApplied.authority = Reference(IMMZ-Organization-{{suffix}})
 //Vaccine name: {{imm.vaccineName}}
 //Series name: {{imm.vaccineSeriesName}}
-* protocolApplied[protocolAppliedAuthority].doseNumberPositiveInt = "{{imm.doseNumberPositiveInt}}"
-* protocolApplied[protocolAppliedAuthority].seriesDosesPositiveInt = "{{imm.seriesDosesPositiveInt}}"
+* protocolApplied.doseNumberPositiveInt = {{imm.doseNumberPositiveInt}}
+* protocolApplied.seriesDosesPositiveInt = {{imm.seriesDosesPositiveInt}}
 {% endfor %}
 
 {# Pregnancy status #}

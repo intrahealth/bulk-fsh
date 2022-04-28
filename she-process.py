@@ -76,8 +76,8 @@ def genfsh(lang):
             "vaccineName": vaccine_name.replace(" ", "-"), # replacing spaces so that we can insert this in a FHIR Resource's id
             "vaccineCodeName": random_code["code"],
             "vaccineSeriesName": random_code["series_name"],
-            "doseNumberPositiveInt": "TODO: DOSE", # TODO
-            "seriesDosesPositiveInt": "TODO: SERIES", # TODO
+            "doseNumberPositiveInt": 1, # TODO
+            "seriesDosesPositiveInt": 1, # TODO
         })
 
     # Generate patients
