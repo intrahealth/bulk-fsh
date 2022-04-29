@@ -23,7 +23,7 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#{{imm.vaccineCodeName}}
+* vaccineCode = SCT#{{imm.vaccineCodeName}} "{{imm.vaccineSeriesName}}"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-{{suffix}})

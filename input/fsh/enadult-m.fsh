@@ -3,9 +3,9 @@ InstanceOf:   IPSPatient
 Usage:        #example
 // Title: ""
 // Description: ""
-* name[+].text = "terbiumadult-m"
+* name[+].text = "telluriumadult-m"
 * name[=].use = #official
-* birthDate = "1994-03-14"
+* birthDate = "1993-07-29"
 * gender = #male
 
 
@@ -23,13 +23,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#418268006
+* vaccineCode = SCT#418268006 "Product containing attenuated Bacillus Calmette Guerin (medicinal product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -44,18 +44,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#35736007
+* vaccineCode = SCT#409580000 "CVD 103-HgR live attenuated oral cholera vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Cholera
-//Series name: Cholera vaccine (product)
+//Series name: CVD 103-HgR live attenuated oral cholera vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -65,13 +65,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#N/A
+* vaccineCode = SCT#N/A "None"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -86,18 +86,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#350327004
+* vaccineCode = SCT#68113000 "Haemophilus b oligosaccharide conjugate(diphtheria CRM>197< protein conjugate) vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Diphtheria
-//Series name: Diphtheria + tetanus vaccine (product)
+//Series name: Haemophilus b oligosaccharide conjugate(diphtheria CRM>197< protein conjugate) vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -107,18 +107,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#427806004
+* vaccineCode = SCT#412373007 "Diphtheria + pertussis + tetanus + Haemophilus influenzae type b vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Haemophilus-influenzae-B
-//Series name: Diphtheria + tetanus + haemophilus influenzae type b vaccine (product)
+//Series name: Diphtheria + pertussis + tetanus + Haemophilus influenzae type b vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -128,18 +128,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#348045000
+* vaccineCode = SCT#406324009 "Hepatitis A vaccine injection suspension 0.5 mL prefilled syringe (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Hepatitis-A
-//Series name: Hepatitis A vaccine injection suspension prefilled syringe (product)
+//Series name: Hepatitis A vaccine injection suspension 0.5 mL prefilled syringe (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -149,18 +149,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#698026000
+* vaccineCode = SCT#412403009 "Hepatitis B virus recombinant vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Hepatitis-B
-//Series name: Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine/Hepatitis B Surface Antigen Vaccine (product)
+//Series name: Hepatitis B virus recombinant vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -170,13 +170,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#424519000
+* vaccineCode = SCT#424519000 "Human papillomavirus vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -191,18 +191,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#333698000
+* vaccineCode = SCT#333697005 "Japanese B encephalitis vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Japanese-Encephalitis
-//Series name: Japanese B encephalitis vaccine powder and solvent for injection solution vial (product)
+//Series name: Japanese B encephalitis vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -212,18 +212,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#61153008
+* vaccineCode = SCT#386012008 "Measles vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Measles
-//Series name: Measles, mumps and rubella vaccine (product)
+//Series name: Measles vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -233,18 +233,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#423912009
+* vaccineCode = SCT#698026000 "Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine/Hepatitis B Surface Antigen Vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Meningococcal
-//Series name: Haemophilus influenzae type b + Meningococcal group C vaccine (product)
+//Series name: Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine/Hepatitis B Surface Antigen Vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -254,18 +254,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#90043005
+* vaccineCode = SCT#376997008 "Mumps virus vaccine live injection solution 0.5mL vial (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Mumps
-//Series name: Mumps live virus vaccine (product)
+//Series name: Mumps virus vaccine live injection solution 0.5mL vial (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -275,18 +275,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#427048007
+* vaccineCode = SCT#421245007 "Diphtheria + pertussis + tetanus vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Pertussis
-//Series name: Haemophilus influenzae type b 10micrograms/diphtheria toxoid 30 iu/tetanus toxoid 40 iu/pertussis 25micrograms/recombinant hepatitis B virus surface antigen 10micrograms/inactivated poliomyelitis injection solution 0.5mL prefilled syringe (product)
+//Series name: Diphtheria + pertussis + tetanus vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -296,13 +296,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#333598008
+* vaccineCode = SCT#333598008 "Pneumococcal vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -317,18 +317,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#414002009
+* vaccineCode = SCT#414003004 "Diphtheria + tetanus + pertussis + inactivated poliovirus vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Polio
-//Series name: Diphtheria + tetanus + inactivated poliovirus vaccine (product)
+//Series name: Diphtheria + tetanus + pertussis + inactivated poliovirus vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -338,18 +338,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#3526007
+* vaccineCode = SCT#333607004 "Rabies inactivated vaccine powder and solvent for injection solution vial (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Rabies
-//Series name: Rabies vaccine, human (product)
+//Series name: Rabies inactivated vaccine powder and solvent for injection solution vial (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -359,13 +359,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#116077000
+* vaccineCode = SCT#116077000 "Rotavirus vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -380,13 +380,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#440075005
+* vaccineCode = SCT#440075005 "Live measles + rubella vaccine injection dose form (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -401,18 +401,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#430410002
+* vaccineCode = SCT#418707004 "Inactivated Influenza surface antigen virosome vaccine prefilled syringe (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Seasonal-Influenza
-//Series name: Product containing Influenza virus vaccine in nasal dose form (medicinal product form)
+//Series name: Inactivated Influenza surface antigen virosome vaccine prefilled syringe (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -422,18 +422,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#375054005
+* vaccineCode = SCT#425555004 "Haemophilus influenzae Type b + tetanus vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Tetanus
-//Series name: Tetanus toxoid, adsorbed 20u/mL 0.5mL injection solution ampule (product)
+//Series name: Haemophilus influenzae Type b + tetanus vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -443,13 +443,13 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#333699008
+* vaccineCode = SCT#333699008 "Tick-borne encephalitis vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
@@ -464,18 +464,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#346697001
+* vaccineCode = SCT#333708002 "Hepatitis A 1440u//typhoid 25mcg vaccine injection solution 1mL prefilled syringe (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Typhoid
-//Series name: Typhoid whole cell vaccine (product)
+//Series name: Hepatitis A 1440u//typhoid 25mcg vaccine injection solution 1mL prefilled syringe (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -485,18 +485,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#407737004
+* vaccineCode = SCT#412530002 "Varicella virus live vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Varicella
-//Series name: Varicella-zoster vaccine (product)
+//Series name: Varicella virus live vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
@@ -506,18 +506,18 @@ Usage: #example
 // Title: ""
 // Description: ""
 * status = #completed
-* vaccineCode = SCT#333652001
+* vaccineCode = SCT#56844000 "Yellow fever vaccine (product)"
 * expirationDate = "2024-06-30"
 * lotNumber = "123"
 * patient = Reference(IMMZ-Patient-enadult-m)
 * location.display = "Vaccination Site"
-//Set to a random date between 1994-03-14 (Patient birth date) to 2022-04-28 (date of test-case generation)
-* occurrenceDateTime =  "2019-10-03"
+//Set to a random date between 1993-07-29 (Patient birth date) to 2022-04-29 (date of test-case generation)
+* occurrenceDateTime =  "2019-07-14"
 * performer.actor = Reference(IMMZ-Organization-enadult-m)
 //check what protol applied requirements there are
 * protocolApplied.authority = Reference(IMMZ-Organization-enadult-m)
 //Vaccine name: Yellow-Fever
-//Series name: Yellow fever live vaccine injection solution vial (product)
+//Series name: Yellow fever vaccine (product)
 * protocolApplied.doseNumberPositiveInt = 1
 * protocolApplied.seriesDosesPositiveInt = 1
 
